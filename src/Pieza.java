@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.List;
 
 public class Pieza {
 	private String nombrePieza;
@@ -24,5 +26,5 @@ public class Pieza {
 		return nombrePieza + " " + precioPieza + " euros";
 	}
 	
-	
+		
 }

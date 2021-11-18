@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class App {
@@ -52,7 +53,7 @@ public class App {
 		System.out.println("El presupuesto de reparación de golpe en la chapa es de " + averiaGolpeChapa.getPresupuestoReparacion() + " euros");
 		System.out.println("");
 		
-		Coche coche1 = new Coche("Citroen", "rojo");	
+		Vehiculo coche1 = new Coche("Citroen", "rojo");	
 		List<Averia> listaAveriasCoche1 = new ArrayList<Averia>();
 		listaAveriasCoche1.add(averiaRevision);
 		listaAveriasCoche1.add(averiaGolpeChapa);
@@ -64,7 +65,7 @@ public class App {
 				presupuestoReparacionCoche1 + " euros. Se tardará en llevar a cabo unas " + horasReparacionCoche1 + " horas.");
 		//System.out.println("");
 		
-		Coche coche2 = new Coche("Audi", "gris");
+		Vehiculo coche2 = new Coche("Audi", "gris");
 		List<Averia> listaAveriasCoche2 = new ArrayList<Averia>();
 		listaAveriasCoche2.add(averiaLunaRota);
 		listaAveriasCoche2.add(averiaGolpeChapa);
@@ -75,7 +76,7 @@ public class App {
 				presupuestoReparacionCoche2 + " euros. Se tardará en llevar a cabo unas " + horasReparacionCoche2 + " horas.");
 		//System.out.println("");
 		
-		Coche coche3 = new Coche("Ford", "blanco");	
+		Vehiculo coche3 = new Coche("Ford", "blanco");	
 		List<Averia> listaAveriasCoche3 = new ArrayList<Averia>();
 		listaAveriasCoche1.add(averiaRevision);
 		listaAveriasCoche1.add(averiaRuedaPinchada);
@@ -86,10 +87,19 @@ public class App {
 				presupuestoReparacionCoche3 + " euros. Se tardará en llevar a cabo unas " + horasReparacionCoche3 + " horas.");
 		System.out.println("");
 		
-//		List<Coche> listaCoches = Arrays.asList(coche1, coche2, coche3);
-//		System.out.println(listaCoches);
-//		listaCoches.sort(null);
-//		listaCoches.forEach(System.out::print);
-	}
+		List<Vehiculo> listaCoches = Arrays.asList(coche1, coche2, coche3);
+		System.out.println(listaCoches);
+		listaCoches.sort(null);
+		
+//		listaCoches.sort(new Comparator<Vehiculo>() {
+//			
+//			@Override
+//		    public int compare(Vehiculo o1, Vehiculo o2) {
+//				return o1.getColor().compareTo(o2.getColor());
+//				}
+//		});
+//		
+		listaCoches.forEach(System.out::print);
 
+	}
 }
