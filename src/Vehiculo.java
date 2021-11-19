@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,14 +20,10 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
 		return averias;
 	}
 
-	public void setAverias(List<Averia> averias) {
-		this.averias = averias;
-	}
-
 	public Vehiculo(String marca, String color) {
-		super();
 		this.marca = marca;
 		this.color = color;
+		this.averias = new ArrayList<Averia>();
 	}
 
 	@Override

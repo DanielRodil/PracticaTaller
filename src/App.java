@@ -7,87 +7,43 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		Pieza piezaAceite = new Pieza("Aceite", 50, 0);
-		Pieza piezaRueda = new Pieza("Rueda", 200, 2);
-		Pieza piezaLuna = new Pieza("Luna", 1000, 1);
-		Pieza piezaChapa = new Pieza("Chapa", 500, 4);
+		Pieza piezaRueda = new Pieza("Rueda", 200);
+		Pieza piezaLuna = new Pieza("Luna", 1000);
+		Pieza piezaChapa = new Pieza("Chapa", 500);
 		
 		Averia averiaRevision = new Averia("Revision", 4);
-		List<Pieza> listaPiezasRevision = new ArrayList<Pieza>();
-		listaPiezasRevision.add(piezaAceite);
-		listaPiezasRevision.add(piezaRueda);
-		listaPiezasRevision.add(piezaChapa);
-		averiaRevision.setPiezas(listaPiezasRevision);
-		averiaRevision.setPresupuestoReparacion(Utils.presupuestoReparacion(averiaRevision, listaPiezasRevision));
-		//System.out.println(listaPiezasRevision);
-		System.out.println("El presupuesto de una revisión es de " + averiaRevision.getPresupuestoReparacion() + " euros");
-		//System.out.println("");
-		
-		Averia averiaLunaRota = new Averia("Luna rota", 8);
-		List<Pieza> listaPiezasLunaRota = new ArrayList<Pieza>();
-		listaPiezasLunaRota.add(piezaLuna);
-		listaPiezasLunaRota.add(piezaChapa);
-		averiaLunaRota.setPiezas(listaPiezasLunaRota);
-		averiaLunaRota.setPresupuestoReparacion(Utils.presupuestoReparacion(averiaLunaRota, listaPiezasLunaRota));
-		//System.out.println(listaPiezasLunaRota);
-		System.out.println("El presupuesto de reparacion de la luna rota es de " + averiaLunaRota.getPresupuestoReparacion() + " euros");
-		//System.out.println("");
-		
-		Averia averiaRuedaPinchada = new Averia("Rueda Pinchada", 2);
-		List<Pieza> listaPiezasRuedaPinchada = new ArrayList<Pieza>();
-		listaPiezasRuedaPinchada.add(piezaRueda);
-		listaPiezasRuedaPinchada.add(piezaLuna);
-		averiaRuedaPinchada.setPiezas(listaPiezasRuedaPinchada);
-		averiaRuedaPinchada.setPresupuestoReparacion(Utils.presupuestoReparacion(averiaRuedaPinchada, listaPiezasRuedaPinchada));
-		//System.out.println(listaPiezasRuedaPinchada);
-		System.out.println("El presupuesto de reparación de una rueda pinchada es de " + averiaRuedaPinchada.getPresupuestoReparacion() + " euros");
-		//System.out.println("");
+		averiaRevision.addPiezas(piezaRueda);
+		averiaRevision.addPiezas(piezaLuna);
+		System.out.println(Taller.imprimirPresupuestoAveria(averiaRevision));
+			
+		Averia averiaLunaRota = new Averia("Luna Rota", 8);
+		averiaLunaRota.addPiezas(piezaLuna);
+		averiaLunaRota.addPiezas(piezaChapa);
+		System.out.println(Taller.imprimirPresupuestoAveria(averiaLunaRota));
 		
 		Averia averiaGolpeChapa = new Averia("Golpe Chapa", 11);
-		List<Pieza> listaPiezasGolpeChapa = new ArrayList<Pieza>();
-		listaPiezasGolpeChapa.add(piezaChapa);
-		listaPiezasGolpeChapa.add(piezaRueda);
-		averiaGolpeChapa.setPiezas(listaPiezasGolpeChapa);
-		averiaGolpeChapa.setPresupuestoReparacion(Utils.presupuestoReparacion(averiaGolpeChapa, listaPiezasGolpeChapa));
-		//System.out.println(listaPiezasGolpeChapa);
-		System.out.println("El presupuesto de reparación de golpe en la chapa es de " + averiaGolpeChapa.getPresupuestoReparacion() + " euros");
+		averiaGolpeChapa.addPiezas(piezaChapa);
+		averiaRevision.addPiezas(piezaRueda);
+		System.out.println(Taller.imprimirPresupuestoAveria(averiaGolpeChapa));
+		
 		System.out.println("");
 		
-		Vehiculo coche1 = new Coche("Citroen", "rojo");	
-		List<Averia> listaAveriasCoche1 = new ArrayList<Averia>();
-		listaAveriasCoche1.add(averiaRevision);
-		listaAveriasCoche1.add(averiaGolpeChapa);
-		listaAveriasCoche1.add(averiaRuedaPinchada);
-		int horasReparacionCoche1 = averiaRevision.getNumeroHoras() + averiaGolpeChapa.getNumeroHoras() + averiaRuedaPinchada.getNumeroHoras();
-		int presupuestoReparacionCoche1 = averiaRevision.getPresupuestoReparacion() + 
-				averiaGolpeChapa.getPresupuestoReparacion() + averiaRuedaPinchada.getPresupuestoReparacion();
-		System.out.println("El presupuesto de reparación del " + coche1.getMarca() + " " + coche1.getColor() + " es de " +
-				presupuestoReparacionCoche1 + " euros. Se tardará en llevar a cabo unas " + horasReparacionCoche1 + " horas.");
-		//System.out.println("");
+		Coche cocheCitroen = new Coche("Citroen", "rojo");	
+		cocheCitroen.getAverias().add(averiaRevision);
+		cocheCitroen.getAverias().add(averiaLunaRota);
+		System.out.println(Taller.imprimirPresupuestoVehiculo(cocheCitroen));
 		
-		Vehiculo coche2 = new Coche("Audi", "gris");
-		List<Averia> listaAveriasCoche2 = new ArrayList<Averia>();
-		listaAveriasCoche2.add(averiaLunaRota);
-		listaAveriasCoche2.add(averiaGolpeChapa);
-		int horasReparacionCoche2 = averiaLunaRota.getNumeroHoras() + averiaGolpeChapa.getNumeroHoras();
-		int presupuestoReparacionCoche2 = averiaLunaRota.getPresupuestoReparacion() + 
-				averiaGolpeChapa.getPresupuestoReparacion();
-		System.out.println("El presupuesto de reparación del " + coche2.getMarca() + " " + coche2.getColor() + " es de " +
-				presupuestoReparacionCoche2 + " euros. Se tardará en llevar a cabo unas " + horasReparacionCoche2 + " horas.");
-		//System.out.println("");
+		Coche cocheAudi = new Coche("Audi", "gris");
+		cocheAudi.getAverias().add(averiaGolpeChapa);
+		cocheAudi.getAverias().add(averiaLunaRota);
+		System.out.println(Taller.imprimirPresupuestoVehiculo(cocheAudi));
 		
-		Vehiculo coche3 = new Coche("Ford", "blanco");	
-		List<Averia> listaAveriasCoche3 = new ArrayList<Averia>();
-		listaAveriasCoche1.add(averiaRevision);
-		listaAveriasCoche1.add(averiaRuedaPinchada);
-		int horasReparacionCoche3 = averiaRevision.getNumeroHoras() + averiaRuedaPinchada.getNumeroHoras();
-		int presupuestoReparacionCoche3 = averiaRevision.getPresupuestoReparacion() + 
-				averiaRuedaPinchada.getPresupuestoReparacion();
-		System.out.println("El presupuesto de reparación del " + coche3.getMarca() + " " + coche3.getColor() + " es de " +
-				presupuestoReparacionCoche3 + " euros. Se tardará en llevar a cabo unas " + horasReparacionCoche3 + " horas.");
-		System.out.println("");
-		
-		List<Vehiculo> listaCoches = Arrays.asList(coche1, coche2, coche3);
+		Moto motoHonda = new Moto("Honda", "blanco");	
+		motoHonda.getAverias().add(averiaRevision);
+		motoHonda.getAverias().add(averiaGolpeChapa);
+		System.out.println(Taller.imprimirPresupuestoVehiculo(motoHonda));
+
+		List<Vehiculo> listaCoches = Arrays.asList(cocheCitroen, cocheAudi, motoHonda);
 		System.out.println(listaCoches);
 		listaCoches.sort(null);
 		

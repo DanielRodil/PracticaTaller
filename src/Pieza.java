@@ -4,21 +4,15 @@ import java.util.List;
 public class Pieza {
 	private String nombrePieza;
 	private int precioPieza;
-	private int cantidadPiezas;
 	
 	public int getPrecioPieza() {
 		return precioPieza;
 	}
 
-	public int getCantidadPiezas() {
-		return cantidadPiezas;
-	}
-
-	public Pieza(String nombrePieza, int precioPieza, int cantidadPiezas) {
+	public Pieza(String nombrePieza, int precioPieza) {
 		super();
 		this.nombrePieza = nombrePieza;
 		this.precioPieza = precioPieza;
-		this.cantidadPiezas = cantidadPiezas;
 	}
 
 	@Override

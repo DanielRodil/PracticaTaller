@@ -1,40 +1,39 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Averia {
 	private String nombreAveria;
 	private int numeroHoras;
-	private int precioHora = 50;
 	private List<Pieza> piezas;
-	private int presupuestoReparacion;
-		
+	
+	public String getNombreAveria() {
+		return nombreAveria;
+	}	
+	
 	public int getNumeroHoras() {
 		return numeroHoras;
 	}
 	
-	public int getPrecioHora() {
-		return precioHora;
-	}
-
-	public int getPresupuestoReparacion() {
-		return presupuestoReparacion;
-	}
-
-	public void setPresupuestoReparacion(int presupuestoReparacion) {
-		this.presupuestoReparacion = presupuestoReparacion;
-	}
-
 	public List<Pieza> getPiezas() {
 		return piezas;
-	}
+	}	
 	
-	public void setPiezas(List<Pieza> piezas) {
-		this.piezas = piezas;
+	public void addPiezas(Pieza pieza) {
+		this.piezas.add(pieza);
 	}
-	
+
 	public Averia(String nombreAveria, int numeroHoras) {
-		super();
+		this.piezas = new ArrayList<Pieza>();
 		this.nombreAveria = nombreAveria;
 		this.numeroHoras = numeroHoras;
+	}
+
+	@Override
+	public String toString() {
+		return "Averia [nombreAveria=" + nombreAveria + ", numeroHoras=" + numeroHoras
+				+ ", piezas=" + piezas;
 	}	
+	
+	
 	
 }
